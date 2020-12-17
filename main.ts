@@ -20,6 +20,9 @@ controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     cam_x += -8
+    if (cam_x < 8) {
+        cam_x = 8
+    }
     mySprite.x = cam_x
     scene.centerCameraAt(cam_x, 150)
 })
@@ -38,6 +41,9 @@ scene.onOverlapTile(SpriteKind.Player, myTiles.tile5, function (sprite, location
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     cam_x += -8
+    if (cam_x < 8) {
+        cam_x = 8
+    }
     mySprite.x = cam_x
     scene.centerCameraAt(cam_x, 150)
 })
