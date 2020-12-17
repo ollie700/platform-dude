@@ -8,6 +8,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     	
     }
 })
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile8, function (sprite, location) {
+    mySprite.startEffect(effects.fire, 500)
+    cam_x += -8
+    mySprite.x = cam_x
+})
 controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
     cam_x += 8
     mySprite.x = cam_x
