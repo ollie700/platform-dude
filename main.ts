@@ -8,12 +8,37 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     	
     }
 })
+controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
+    cam_x += 8
+    mySprite.x = cam_x
+    scene.centerCameraAt(cam_x, 150)
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    cam_x += -8
+    mySprite.x = cam_x
+    scene.centerCameraAt(cam_x, 150)
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    cam_x += 8
+    mySprite.x = cam_x
+    scene.centerCameraAt(cam_x, 150)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(1)
 })
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile5, function (sprite, location) {
+    scene.cameraFollowSprite(mySprite)
+})
+controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
+    cam_x += -8
+    mySprite.x = cam_x
+    scene.centerCameraAt(cam_x, 150)
+})
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
+let cam_x = 0
+cam_x = 100
 mySprite = sprites.create(img`
     . . f f f f f f f f f f f f . . 
     . f f f f f f f f f f f f f f . 
@@ -410,7 +435,7 @@ tiles.setTilemap(tiles.createTilemap(hex`2800fa000000000000000000000000000000000
     ........................................
     ........................................
     `, [myTiles.transparency16,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9], TileScale.Sixteen))
-scene.cameraFollowSprite(mySprite)
+scene.centerCameraAt(cam_x, 150)
 for (let value of tiles.getTilesByType(myTiles.tile3)) {
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -576,4 +601,3 @@ for (let value of tiles.getTilesByType(myTiles.tile3)) {
     tiles.placeOnTile(mySprite2, value)
     tiles.setTileAt(value, myTiles.transparency16)
 }
-controller.moveSprite(mySprite, 100, 0)
