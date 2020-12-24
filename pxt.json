@@ -3,7 +3,11 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "animation": "*"
+        "animation": "*",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.1.0",
+        "sevenseg": "*",
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0",
+        "radio-broadcast": "*"
     },
     "files": [
         "main.blocks",
